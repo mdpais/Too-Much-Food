@@ -12,7 +12,7 @@ const signinFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.replace("/");
     } else {
       const resJson = await response.json();
       alert(`${response.statusText}\r${resJson.message}`);

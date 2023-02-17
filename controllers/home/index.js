@@ -9,4 +9,22 @@ router.use("/", authRoutes);
 //router.use('/menu', menuRoutes);
 //router.use('/reports', reportRoutes);
 
+///////////////////////////////////////////////////////////////////////////////
+// Render home page
+///////////////////////////////////////////////////////////////////////////////
+router.get("/", async (req, res) => {
+  const isLogged = req.session.isLogged;
+
+  try {
+    res.render("homepage", {
+      isLogged,
+    });
+  } catch (error) {
+    res.render("error", {
+      isLogged,
+      error,
+    });
+  }
+});
+
 module.exports = router;

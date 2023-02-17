@@ -16,21 +16,6 @@
         <h1>
           <a href="/">LOGO</a>
         </h1>
-        <nav>
-          <div>
-            <a href="/menu"><button>Menu</button></a>
-            <a href="/orders"><button>Orders</button></a>
-            <a href="/report"><button>Report</button></a>
-          </div>
-          {{#if isLogged}}
-            <div>
-              <a href="/profile"><button>profile</button></a>
-            </div>
-          {{else}}
-            <a href="/login">login</a>
-          {{/if}}
-        </nav>
-
         <nav class="flex justify-between p-3">
           <h1>
             <a href="/" class="text-3xl mb-3">Tech Blog</a>
@@ -51,7 +36,7 @@
           {{/if}}
         </nav>
       </header>
-      <main>
+      <main class="container mx-auto mt-5">
         {{{body}}}
       </main>
       <footer>

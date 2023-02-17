@@ -13,7 +13,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.replace("/");
     } else {
       const myJson = await response.json();
       alert(`${response.statusText}\n${myJson.errors[0].message}`);

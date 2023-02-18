@@ -1,20 +1,32 @@
 const router = require("express").Router();
 const { Post, User, Comment, Menu } = require("../../models");
 
+///////////////////////////////////////////////////////////////////////////////
+// Gets all menu and renders menu page
+///////////////////////////////////////////////////////////////////////////////
 router.get("/menu", async (req, res) => {
   const isLogged = req.session.isLogged;
 
   try {
     const menuData = await Menu.findAll();
-    const menu = menuData.map((item) => item.get({ plain: true }));
 
-    res.render("menu/menu", { menu, isLogged });
-    return;
+    const menu = menuData.map((plate) => plate.get({ plain: true }));
+
+    res.render("menu/menu", {
+      menu,
+      isLogged,
+    });
   } catch (error) {
-    res.render("error", error);
+    res.render("error", {
+      isLogged,
+      error,
+    });
   }
 });
 
+///////////////////////////////////////////////////////////////////////////////
+// Gets plate by id and renders plate page
+///////////////////////////////////////////////////////////////////////////////
 router.get("/menu/:id", async (req, res) => {
   const isLogged = req.session.isLogged;
 

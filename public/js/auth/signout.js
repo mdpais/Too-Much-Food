@@ -1,5 +1,5 @@
-const logout = async () => {
-  const response = await fetch("/api/auth/logout", {
+const signout = async () => {
+  const response = await fetch("/api/auth/signout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
@@ -12,4 +12,4 @@ const logout = async () => {
   }
 };
 
-document.getElementById("logout").addEventListener("click", logout);
+document.getElementById("signout").addEventListener("click", signout);

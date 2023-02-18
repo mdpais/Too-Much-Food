@@ -1,8 +1,16 @@
-{{#each menu as |plate|}}
-  <div>{{stringfy plate}}</div>
-{{else}}
-  <div>No plates found!</div>
-{{/each}}
-<div>{{isLogged}}</div>
+<div class="md:columns-1 lg:columns-2 xl:columns-3">
+  {{#each menu as |plate|}}
+    <div class="card card-side min-w-full mb-3 bg-gradient-to-r from-orange-100 to-orange-500 shadow-md hover:shadow-xl">
+      <figure class="w-32"><img src="/images/spiderman.jpeg" alt="Album" /></figure>
+      <div class="card-body">
+        <h2 class="card-title text-shadow">{{plate.item}}</h2>
+        <p>Price: {{format_currency plate.price}}</p>
+      </div>
+    </div>
+  {{else}}
+    <div>No plates found!</div>
+  {{/each}}
+  <div>{{isLogged}}</div>
+</div>
 
 <script src="/js/menu/menu.js"></script>

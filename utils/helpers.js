@@ -3,9 +3,9 @@ module.exports = {
     // Format date as MM/DD/YYYY
     return date.toLocaleDateString();
   },
-  format_amount: (amount) => {
-    // format large numbers with commas
-    return parseInt(amount).toLocaleString();
+  format_currency: (value) => {
+    // format value as CA dollars
+    return new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(value);
   },
   stringfy: (data) => {
     return JSON.stringify(data);

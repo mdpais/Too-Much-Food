@@ -1,0 +1,11 @@
+{{#unless error}}
+  {{#if plate}}
+    <div>{{stringfy plate}}</div>
+  {{else}}
+    <div>No plates found!</div>
+  {{/if}}
+{{else}}
+  <div>{{error}}</div>
+{{/unless}}
+
+<script src="/js/menu/menu.js"></script>

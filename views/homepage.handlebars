@@ -1,5 +1,13 @@
 <div>
-  <p>
-    Home Page
-  </p>
+  {{#if isLogged}}
+    <p>
+      Welcome,
+      {{first_name}}
+      {{last_name}}!
+    </p>
+  {{else}}
+    <p>
+      Please, log in!
+    </p>
+  {{/if}}
 </div>

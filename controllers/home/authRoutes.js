@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../../models");
 
 router.get("/signup",(req, res) => {
   if (req.session.isLogged) {
@@ -7,7 +6,7 @@ router.get("/signup",(req, res) => {
     return;
   }
 
-  res.render("signup");
+  res.render("auth/signup");
 });
 
 router.get("/signin", (req, res) => {
@@ -16,7 +15,7 @@ router.get("/signin", (req, res) => {
     return;
   }
 
-  res.render("signin");
+  res.render("auth/signin");
 });
 
 router.get("/signout", (req, res) => {
@@ -25,7 +24,7 @@ router.get("/signout", (req, res) => {
       return;
     }
   
-    res.render("signin");
+    res.render("auth/signin");
   });
 
 module.exports = router;

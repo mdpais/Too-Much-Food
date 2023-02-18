@@ -1,8 +1,9 @@
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Too Much Food</title>
+    {{! <link rel="stylesheet" href="/css/global.css" /> }}
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css"
       rel="stylesheet"
@@ -13,12 +14,9 @@
   <body>
     <div>
       <header>
-        <h1>
-          <a href="/">LOGO</a>
-        </h1>
         <nav class="flex justify-between p-3">
           <h1>
-            <a href="/" class="text-3xl mb-3">Tech Blog</a>
+            <a href="/" class="text-3xl mb-3">Too Much Food</a>
           </h1>
           {{#if isLogged}}
             <div>
@@ -45,7 +43,7 @@
     </div>
 
     {{#if isLogged}}
-      <script src="/js/logout.js"></script>
+      <script src="/js/auth/logout.js"></script>
     {{/if}}
   </body>
 

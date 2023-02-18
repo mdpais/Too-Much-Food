@@ -6,11 +6,30 @@
     </div>
     <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
       <div class="max-w-md mx-auto">
-        <div>
-          <h1 class="text-2xl font-semibold">Sign In</h1>
-        </div>
+        <h2 class="text-2xl font-bold">Sign Up</h2>
         <div class="divide-y">
+
           <form class="py-8 text-base leading-6 space-y-4 sm:leading-7">
+            <label class="block">
+              <span class="label-text">What is your first name?</span>
+              <input
+                id="first_name"
+                type="text"
+                placeholder="Nome"
+                class="input input-primary w-full max-w-xs"
+              />
+            </label>
+
+            <label class="block">
+              <span class="label-text">What is your last name?</span>
+              <input
+                id="last_name"
+                type="text"
+                placeholder="Sobrenome"
+                class="input input-primary w-full max-w-xs"
+              />
+            </label>
+
             <label class="block">
               <span class="label-text">What is your email?</span>
               <input
@@ -20,6 +39,7 @@
                 class="input input-primary w-full max-w-xs"
               />
             </label>
+
             <label class="block">
               <span class="label-text">Type a new password?</span>
               <input
@@ -29,9 +49,8 @@
                 class="input input-primary w-full max-w-xs"
               />
             </label>
-            <div class="relative">
-              <button id="signinButton" class="btn btn-primary">sign in</button>
-            </div>
+
+            <button class="btn btn-primary" id="signupButton">sign up</button>
           </form>
         </div>
       </div>
@@ -39,4 +58,4 @@
   </div>
 </div>
 
-<script src="./js/signin.js"></script>
+<script src="./js/auth/signup.js"></script>

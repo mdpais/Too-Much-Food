@@ -1,0 +1,42 @@
+<div class="py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-orange-100 to-orange-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+    >
+    </div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <div>
+          <h1 class="text-2xl font-semibold">Sign In</h1>
+        </div>
+        <div class="divide-y">
+          <form class="py-8 text-base leading-6 space-y-4 sm:leading-7">
+            <label class="block">
+              <span class="label-text">What is your email?</span>
+              <input
+                id="email"
+                type="email"
+                placeholder="nome@exemplo.com.br"
+                class="input input-primary w-full max-w-xs"
+              />
+            </label>
+            <label class="block">
+              <span class="label-text">Type a new password?</span>
+              <input
+                id="password"
+                type="password"
+                placeholder="ExemPloSenHa9#"
+                class="input input-primary w-full max-w-xs"
+              />
+            </label>
+            <div class="relative">
+              <button id="signinButton" class="btn btn-primary">sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./js/auth/signin.js"></script>

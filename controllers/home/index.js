@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const authRoutes = require("./authRoutes");
 //const orderRoutes = require('./orderRoutes');
-//const menuRoutes = require('./menuRoutes');
+const menuRoutes = require('./menuRoutes');
 //const reportRoutes = require('./reportRoutes');
 
 router.use("/", authRoutes);
 //router.use('/orders', orderRoutes);
-//router.use('/menu', menuRoutes);
+router.use('/', menuRoutes);
 //router.use('/reports', reportRoutes);
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -14,10 +14,11 @@ router.use("/", authRoutes);
 ///////////////////////////////////////////////////////////////////////////////
 router.get("/", async (req, res) => {
   const isLogged = req.session.isLogged;
-
+  const user = req.session.user;
   try {
     res.render("homepage", {
       isLogged,
+      ...user,
     });
   } catch (error) {
     res.render("error", {

@@ -14,7 +14,7 @@ const createOrderFormHandler = async (event) => {
   const active = document.getElementById('isComplete').checked;
 
   if (platesSelected.length <= 0) {
-    alert('You need to select at least one plate.');
+    alert('You need to select at least one menu item.');
     return;
   }
   if (table_no) {
@@ -56,7 +56,7 @@ const getPlates = async () => {
 /////////////////////////////////////////////////////////////////////
 let loadPlates = async () => {
   const plateSelect = document.getElementById('plateSelect');
-  plateSelect.innerHTML = '<option disabled selected>Pick a plate</option>';
+  plateSelect.innerHTML = '<option disabled selected>Select a menu item</option>';
   const plates = await getPlates();
 
   plates.forEach((plate) => {
@@ -124,18 +124,21 @@ const deletePlate = (event) => {
   platesSelected = platesSelected.filter((item) => item.item_id != id);
 };
 
+var editid = null;
+
 /////////////////////////////////////////////////////////////////////
 // Event listener for Edit order button
 /////////////////////////////////////////////////////////////////////
 const editOrder = (event) => {
   event.preventDefault();
+  platesSelected = [];
 
-  const id = event.target.id.split('-')[1];
+  editid = event.target.id.split('-')[1];
   const order = JSON.parse(event.target.dataset.order);
 
   const table_no = document.getElementById('table_no');
   const active = document.getElementById('isComplete');
-  const plateSelect = document.getElementById(`plate-${id}`);
+  const plateSelect = document.getElementById(`plate-${editid}`);
 
   table_no.value = order.table_no;
   active.checked = order.completed;
@@ -151,32 +154,30 @@ const editOrder = (event) => {
     orderedItem.classList.add('grid', 'grid-cols-6');
     orderedItem.innerHTML = `
     <td class="col-span-4">${item.menu.item}</td> 
-    <th class="col-span-1">${item.quantity}</th> 
+    <td class="col-span-1">${item.quantity}</td> 
     <td class="col-span-1">${deleteBtn}</td> 
  `;
 
     tableBody.appendChild(orderedItem);
+    platesSelected.push({ item_id: item.id, qty: item.quantity });
 
-    // swapSelectOption(item.menu.id);
-    const plateOption = document.getElementById(item.menu.id);
-    plateOption.remove();
   });
 
-  editModeOn();
+  editModeOn(editid);
   refreshELs();
 };
 
 /////////////////////////////////////////////////////////////////////
 // Swap Edit Mode and Create Mode
 /////////////////////////////////////////////////////////////////////
-const editModeOn = () => {
+const editModeOn = (editid) => {
   const title = document.getElementById('title');
   const createBtn = document.getElementById('createOrderBtn');
   const editBtn = document.getElementById('editOrderBtn');
   const cancelBtn = document.getElementById('cancelBtn');
 
   if (!editMode) {
-    title.textContent = 'Edit Order';
+    title.textContent = 'Edit Order #'+editid;
     createBtn.style.display = 'none';
     editBtn.style.display = 'block';
     cancelBtn.style.display = 'block';
@@ -201,6 +202,7 @@ const cancelBtnHandler = async (event) => {
 
   const tableBody = document.getElementById('selectedPlatesTable');
   tableBody.innerHTML = '';
+  editid = null;
 };
 
 document.getElementById('cancelBtn').addEventListener('click', () => location.reload());
@@ -214,57 +216,36 @@ const saveEditedItem = async (event) => {
 
   const table_no = document.getElementById('table_no').value.trim();
   const active = document.getElementById('isComplete').checked;
+  console.log(active);
+  const menuIds = [];
+  const qty = []
+  for (let i=0; i<platesSelected.length; i++) {
+    menuIds.push(platesSelected[i].item_id);
+    qty.push(platesSelected[i].qty);
+  }
 
   if (platesSelected.length <= 0) {
-    alert('You need to select at least one plate.');
+    alert('You need to select at least one menu item.');
     return;
   }
   if (table_no) {
-    const response = await fetch(`/api/orders/${event.target}`, {
-      method: 'POST',
-      body: JSON.stringify({ table_no, completed: active, menuIds: platesSelected }),
+    const response = await fetch(`/api/orders/${editid}`, {
+      method: 'PUT',
+      body: JSON.stringify({ table_no, completed: active, menuIds, qty }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      alert('Order created successfully!');
+      alert('Order modified successfully!');
+      editid = null;
       location.reload();
     } else {
       alert(`Error ${response.status}\n${response.statusText}`);
     }
   }
-
-  if (item && price) {
-    const response = await fetch(`/api/menu/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ item, price, active }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      alert('Item modified successfully!');
-      location.reload();
-    } else {
-      const resJson = await response.json();
-      alert(`${response.statusText}\r${resJson.message}`);
-    }
-  }
 };
 
 document.getElementById('editOrderBtn').addEventListener('click', saveEditedItem);
-
-/* const swapSelectOption = (id) => {
-  const plateSelected = document.getElementById(`plate-${id}`);
-  const plateOption = document.getElementById(id);
-
-  if (plateSelected) {
-    plateSelected.remove();
-    plateOption.style.display = 'block';
-  } else {
-    const plateSelect = document.getElementById('plateSelect');
-    console.log(plateSelect);
-  }
-}; */
 
 /////////////////////////////////////////////////////////////////////
 // Event listener refresher

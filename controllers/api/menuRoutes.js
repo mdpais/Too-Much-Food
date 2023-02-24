@@ -5,7 +5,11 @@ const auth = require("../../utils/isLogged");
 // GET all menu items (JSON)
 router.get("/menuJson", async (req, res) => {
   try {
-    const menuData = await Menu.findAll();
+    const menuData = await Menu.findAll({
+      where: {
+        active: 1,
+      },
+    });
     res.status(200).json(menuData);
   } catch (err) {
     res.status(500).json(err);

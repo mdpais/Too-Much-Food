@@ -1878,6 +1878,7 @@ html {
   top: 100%;
   left: initial;
   background-color: #5D3220;
+  z-index: 5000;
 }
 
 .btn-group .btn:not(:first-child):not(:last-child), .btn-group.btn-group-horizontal .btn:not(:first-child):not(:last-child) {

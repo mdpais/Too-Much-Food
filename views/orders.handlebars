@@ -1,11 +1,3 @@
-{{! create two sections }}
-
-{{! left section
-include "Create New Order" button
-see wireframe shared for details }}
-
-{{! right section
-on clicking the id, the details should display in the form in the left section so it can be edited }}
 <div class="grid sm:grid-cols-1 lg:grid-cols-2">
 
   <div class="lg:sticky lg:top-4 align-middle">
@@ -41,8 +33,8 @@ on clicking the id, the details should display in the form in the left section s
                 
                 <div class="form-control">
                   <div class="input-group">
-                    <select id="plateSelect" class="select select-bordered">
-                      <option disabled selected>Select a menu item to add</option>
+                    <select id="plateInput" class="select select-bordered">
+                      <option id="option-0" disabled selected>Pick a plate</option>
                     </select>
                     <input
                       id="qty"
@@ -56,7 +48,7 @@ on clicking the id, the details should display in the form in the left section s
                     <button id="addPlateBtn" class="btn btn-primary">add</button>
                   </div>
                   <div id="selectedPlatesDiv">
-                    <h3 class="text-xl text-center mt-3">Menu Items included</h3>
+                    <h3 class="text-xl text-center mt-3">Selected Plates</h3>
                     <div class="grid col-span-2">
                      <div class="overflow-x-auto">
                        <table class="table table-compact w-full">
@@ -103,6 +95,8 @@ on clicking the id, the details should display in the form in the left section s
           <div class="col-span-1">
             <h2 class="card-title text-shadow" id="item-{{order.id}}">Order {{order.id}}</h2>
             <p class="text-shadow">Table#: {{order.table_no}}<p>
+            <p class="text-shadow">Server: {{user.first_name}} {{user.last_name}}</p>
+            <p id="active-{{order.id}}" class="text-shadow">{{#if order.completed}}Complete{{else}}Incomplete{{/if}}</p>
             <div class="card-actions">
               <button data-order="{{stringfy order}}" id="edit-{{order.id}}" class="btn btn-primary editBtn mt-2">Edit</button>
           </div>

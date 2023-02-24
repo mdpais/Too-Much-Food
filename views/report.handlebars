@@ -12,6 +12,6 @@
   <td class="with-border cntr">{{quantity}}</td>
   <td class="with-border cntr">{{menu.price}}</td>
   {{!-- <td class="with-border cntr">{{total}}</td> --}}
-  <td class="with-border cntr">{{#unless order.completed}}Not Completed{{/unless}}</div></tr>
+  <td class="with-border cntr">{{#unless order.completed}}Not Completed{{else}}Completed{{/unless}}</div></tr>
 {{/each}}
 </tbody></table>

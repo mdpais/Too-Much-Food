@@ -12,6 +12,8 @@
 
   -[App URL](#app-url)
 
+  -[Screenshot](#screenshot)
+
   -[License](#license)
 
   -[Contributing](#contributing)
@@ -39,6 +41,10 @@
   ## App URL
 
   [https://too-much-food.herokuapp.com/](https://too-much-food.herokuapp.com/)
+
+  ## Screenshot
+
+  ![Screenshot](/public/images/screenshot.png)
 
   ## License
   
